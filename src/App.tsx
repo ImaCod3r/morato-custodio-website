@@ -4,6 +4,7 @@ import PhraseReveal from "./components/PhraseReveal";
 import AboutMe from "./components/AboutMe";
 import HearMyVoice from "./components/HearMyVoice";
 import Contacts from "./components/Contacts";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Contacts />
         </div>
       </main>
+      <Footer />
     </>
   );
 }
