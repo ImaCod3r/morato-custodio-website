@@ -7,11 +7,11 @@ function NavBar() {
   const { links } = data.header;
 
   return (
-    <header className="flex justify-between items-center px-31 py-9">
+    <header className="flex justify-between items-center gap-4 px-6 md:px-31 py-6 md:py-9">
       <Logo />
 
       <nav>
-        <ul className="flex gap-8">
+        <ul className="flex gap-4 sm:gap-6 md:gap-8 text-sm md:text-base">
           {links &&
             links.map((link, idx) => (
               <li key={idx}>

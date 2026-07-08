@@ -5,7 +5,7 @@ import Button from "./ui/Button";
 
 function Contacts() {
     return (
-        <section id="contacts" className="w-full min-h-screen flex flex-col items-center justify-center">
+        <section id="contacts" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
             <Title title="contacto" subtitle="entre em" />
 
             <p className="mt-6 md:max-w-150 text-center">Preencha o formulário para entrar em contacto comigo por e-mail ou acesse as minhas redes sociais abaixo.</p>

@@ -9,23 +9,15 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <NavBar />
+      <div className="flex min-h-screen flex-col">
+        <NavBar />
+        <Hero />
+      </div>
       <main>
-        <div className="min-h-screen">
-          <Hero />
-        </div>
-        <div className="min-h-screen">
-          <PhraseReveal />
-        </div>
-        <div className="min-h-screen">
-          <AboutMe />
-        </div>
-        <div className="min-h-screen">
-          <HearMyVoice />
-        </div>
-        <div className="min-h-screen">
-          <Contacts />
-        </div>
+        <PhraseReveal />
+        <AboutMe />
+        <HearMyVoice />
+        <Contacts />
       </main>
       <Footer />
     </>

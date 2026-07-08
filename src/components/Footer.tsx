@@ -8,7 +8,7 @@ const socialLinks = [
 
 function Footer() {
     return (
-        <footer className="w-full bg-[#FFA245] px-6 md:px-31 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+        <footer className="w-full bg-[#FFA245] px-6 md:px-31 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center">
             <p className="text-3xl font-bold text-white">Morato</p>
 
             <p className="text-white/90 order-3 md:order-2">Todos direitos reservados</p>

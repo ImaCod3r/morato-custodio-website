@@ -8,13 +8,13 @@ function HearMyVoice () {
     const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
 
     return (
-        <section className="w-full min-h-screen flex flex-col items-center justify-center">
+        <section className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
             <Title
                 title="minha-voz"
                 subtitle="Ouça"
             />
 
-            <p className="mt-6">Confira o último episódio de um podcast em que participei.</p>
+            <p className="mt-6 text-center">Confira o último episódio de um podcast em que participei.</p>
 
             {loading && (
                 <div className="w-full max-w-2xl aspect-video rounded-2xl bg-gray-200 animate-pulse mt-10 flex items-center justify-center">
