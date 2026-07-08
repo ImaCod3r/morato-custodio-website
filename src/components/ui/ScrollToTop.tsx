@@ -33,7 +33,7 @@ function ScrollToTop() {
               boxShadow:
                 "inset 0 1px 1px rgba(255,255,255,0.9), inset 0 -2px 4px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.15)",
             }}
-            className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-gradient-to-b from-white/60 to-white/20 text-gray-700 backdrop-blur-md ring-1 ring-black/5 cursor-pointer"
+            className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full border border-white/60 bg-linear-to-b from-white/60 to-white/20 text-gray-700 backdrop-blur-md ring-1 ring-black/5 cursor-pointer"
           >
             <FaChevronUp size={18} />
           </motion.button>

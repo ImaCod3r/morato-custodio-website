@@ -7,9 +7,9 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="w-full min-h-screen flex justify-center items-center px-6 pt-28 pb-12 md:pt-32 md:pb-16"
+      className="w-full min-h-screen flex flex-col items-center overflow-x-hidden pt-28 md:justify-center md:gap-6 md:px-6 md:pt-32 md:pb-16"
     >
-      <div className="flex flex-col items-center gap-6">
+      <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6 md:flex-none">
         <Reveal direction="down">
           <p className="text-4xl md:text-5xl font-bold text-center">{greeting}</p>
           <div className="flex items-end gap-1">
@@ -17,15 +17,19 @@ function Hero() {
             <h1 className="text-4xl md:text-5xl">{name}</h1>
           </div>
         </Reveal>
-
-        <Reveal direction="up" delay={0.15}>
-          <img
-            src={new URL("../assets/photo-cover.png", import.meta.url).href}
-            alt={imageAlt}
-            className="w-100 sm:w-96 md:w-120 max-w-full"
-          />
-        </Reveal>
       </div>
+
+      <Reveal
+        direction="up"
+        delay={0.15}
+        className="w-full flex justify-center"
+      >
+        <img
+          src={new URL("../assets/photo-cover.png", import.meta.url).href}
+          alt={imageAlt}
+          className="w-full scale-140 md:scale-100 max-w-none md:w-120 md:max-w-full"
+        />
+      </Reveal>
     </section>
   );
 }

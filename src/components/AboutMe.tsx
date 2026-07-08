@@ -24,7 +24,7 @@ function AboutMe() {
         </Reveal>
         <Reveal direction="left" delay={0.15}>
           <img
-            className="w-60 md:w-75 max-w-full"
+            className="w-full md:w-75 max-w-full"
             src={new URL("../assets/morato-about.png", import.meta.url).href}
             alt={imageAlt}
           />
