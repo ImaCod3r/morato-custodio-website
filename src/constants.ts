@@ -33,7 +33,7 @@ export const data = {
         imageAlt: "Morato Custódio"
     },
     phraseReveal: {
-        phrase: "“O maior recurso natural que Angola possue, é o próprio angolano.”"
+        phrase: "“O maior recurso natural que Angola tem, é o próprio angolano.”"
     },
     hearMyVoice: {
         subtitle: "Ouça",
