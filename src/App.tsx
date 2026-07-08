@@ -1,12 +1,14 @@
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
+import AboutMe from "./components/AboutMe";
 
 function App() {
   return (
     <>
       <NavBar />
-      <main>
+      <main className="flex flex-col gap-16">
         <Hero />
+        <AboutMe />
       </main>
     </>
   );
