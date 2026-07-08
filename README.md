@@ -51,3 +51,16 @@ npm run lint
 ```
 
 O servidor de desenvolvimento fica disponível em `http://localhost:5173` por padrão.
+
+## SEO
+
+O site inclui otimizações de SEO técnico:
+
+- **Meta tags** completas em [`index.html`](index.html): `title`, `description`, `keywords`, `author`, `robots`, `theme-color` e `canonical`, com `lang="pt-BR"`.
+- **Open Graph** e **Twitter Cards** para pré-visualização em redes sociais e apps de mensagem (imagem em `public/og-cover.png`).
+- **Dados estruturados** JSON-LD (schema.org `Person`) com nome, cargo, áreas de conhecimento e redes sociais.
+- **[`robots.txt`](public/robots.txt)** e **[`sitemap.xml`](public/sitemap.xml)** em `public/`.
+- **Performance**: imagem principal (LCP) com `fetchPriority="high"` e imagens abaixo da dobra com `loading="lazy"`.
+- **HTML semântico**: `<main>`, `<section>` e hierarquia de headings (`h1`/`h2`).
+
+> ⚠️ Substitua o domínio de exemplo `https://moratocustodio.com` pelo domínio real em `index.html`, `public/robots.txt` e `public/sitemap.xml` antes de publicar.

@@ -20,7 +20,7 @@ export const data = {
     hero: {
         greeting: "Prazer,",
         intro: "sou",
-        name: "Morato Custodio.",
+        name: "Morato Custódio.",
         imageAlt: "Morato Custódio em fundo laranja"
     },
     aboutMe: {

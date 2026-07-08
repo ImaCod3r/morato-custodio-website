@@ -28,6 +28,8 @@ function Hero() {
           src={new URL("../assets/photo-cover.png", import.meta.url).href}
           alt={imageAlt}
           className="w-full scale-140 md:scale-100 max-w-none md:w-120 md:max-w-full"
+          fetchPriority="high"
+          decoding="async"
         />
       </Reveal>
     </section>

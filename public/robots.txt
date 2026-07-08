@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moratocustodio.com/sitemap.xml

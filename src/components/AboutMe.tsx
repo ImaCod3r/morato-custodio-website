@@ -27,6 +27,8 @@ function AboutMe() {
             className="w-full md:w-75 max-w-full"
             src={new URL("../assets/morato-about.png", import.meta.url).href}
             alt={imageAlt}
+            loading="lazy"
+            decoding="async"
           />
         </Reveal>
       </div>
