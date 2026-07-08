@@ -13,8 +13,8 @@ function NavBar() {
       <nav>
         <ul className="flex gap-8">
           {links &&
-            links.map((link) => (
-              <li>
+            links.map((link, idx) => (
+              <li key={idx}>
                 <Link
                   className="text-[16px] text-gray-650 hover:text-gray-950 cursor-pointer hover"
                   to={link.to}
