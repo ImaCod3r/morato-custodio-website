@@ -9,11 +9,9 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <div className="flex min-h-screen flex-col">
-        <NavBar />
-        <Hero />
-      </div>
+      <NavBar />
       <main>
+        <Hero />
         <PhraseReveal />
         <AboutMe />
         <HearMyVoice />

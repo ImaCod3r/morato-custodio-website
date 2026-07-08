@@ -8,7 +8,7 @@ function HearMyVoice () {
     const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
 
     return (
-        <section className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
+        <section id="hear-my-voice" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
             <Title
                 title="minha-voz"
                 subtitle="Ouça"
