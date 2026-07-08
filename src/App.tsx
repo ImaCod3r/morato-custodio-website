@@ -5,6 +5,7 @@ import AboutMe from "./components/AboutMe";
 import HearMyVoice from "./components/HearMyVoice";
 import Contacts from "./components/Contacts";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ui/ScrollToTop";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Contacts />
       </main>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }

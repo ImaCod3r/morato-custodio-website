@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Title from "./ui/Title";
+import Reveal from "./ui/Reveal";
 import { useLatestVideo } from "../hooks/useLatestVideo";
 
 function HearMyVoice () {
@@ -9,12 +10,16 @@ function HearMyVoice () {
 
     return (
         <section id="hear-my-voice" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
-            <Title
-                title="minha-voz"
-                subtitle="Ouça"
-            />
+            <Reveal>
+                <Title
+                    title="minha-voz"
+                    subtitle="Ouça"
+                />
+            </Reveal>
 
-            <p className="mt-6 text-center">Confira o último episódio de um podcast em que participei.</p>
+            <Reveal delay={0.1}>
+                <p className="mt-6 text-center">Confira o último episódio de um podcast em que participei.</p>
+            </Reveal>
 
             {loading && (
                 <div className="w-full max-w-2xl aspect-video rounded-2xl bg-gray-200 animate-pulse mt-10 flex items-center justify-center">
@@ -27,7 +32,7 @@ function HearMyVoice () {
             )}
 
             {!loading && !error && videoId && (
-                <div className="w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-lg mt-10 relative bg-black">
+                <Reveal delay={0.15} className="w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-lg mt-10 relative bg-black">
                     {isPlaying ? (
                         <iframe
                             className="w-full h-full"
@@ -59,7 +64,7 @@ function HearMyVoice () {
                             </span>
                         </button>
                     )}
-                </div>
+                </Reveal>
             )}
         </section>
     )

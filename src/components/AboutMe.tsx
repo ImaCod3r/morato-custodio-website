@@ -1,4 +1,5 @@
 import Title from "./ui/Title";
+import Reveal from "./ui/Reveal";
 
 function AboutMe() {
   return (
@@ -6,10 +7,12 @@ function AboutMe() {
       id="about-me"
       className="w-full min-h-screen flex flex-col items-center justify-center gap-10 md:gap-16 px-6 py-24 md:py-28"
     >
-      <Title title="quem-sou" subtitle="Conheça" />
+      <Reveal>
+        <Title title="quem-sou" subtitle="Conheça" />
+      </Reveal>
 
       <div className="flex flex-col md:flex-row items-center md:w-215 max-w-full gap-8 md:gap-0 md:justify-between">
-        <div className="max-w-full md:max-w-[50%]">
+        <Reveal direction="right" className="max-w-full md:max-w-[50%]">
           <p>
             Sou Morato Custódio, empreendedor angolano apaixonado por um único
             problema: como levar inclusão financeira e digital aos milhões de
@@ -22,12 +25,14 @@ function AboutMe() {
             objetivo vai além dos negócios: quero contribuir, em larga escala,
             para mudar de forma profunda a vida dos angolanos.
           </p>
-        </div>
-        <img
-          className="w-60 md:w-75 max-w-full"
-          src={new URL("../assets/morato-about.png", import.meta.url).href}
-          alt="Morato Custódio"
-        />
+        </Reveal>
+        <Reveal direction="left" delay={0.15}>
+          <img
+            className="w-60 md:w-75 max-w-full"
+            src={new URL("../assets/morato-about.png", import.meta.url).href}
+            alt="Morato Custódio"
+          />
+        </Reveal>
       </div>
     </section>
   );
