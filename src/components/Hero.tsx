@@ -17,7 +17,7 @@ function Hero() {
           <img
             src={new URL("../assets/photo-cover.png", import.meta.url).href}
             alt="Morato Custódio em fundo laranja"
-            className="w-72 sm:w-96 md:w-120 max-w-full"
+            className="w-100 sm:w-96 md:w-120 max-w-full"
           />
         </div>
       </div>
