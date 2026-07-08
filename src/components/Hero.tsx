@@ -1,6 +1,9 @@
 import Reveal from "./ui/Reveal";
+import { data } from "../constants";
 
 function Hero() {
+  const { greeting, intro, name, imageAlt } = data.hero;
+
   return (
     <section
       id="hero"
@@ -8,17 +11,17 @@ function Hero() {
     >
       <div className="flex flex-col items-center gap-6">
         <Reveal direction="down">
-          <p className="text-4xl md:text-5xl font-bold text-center">Prazer,</p>
+          <p className="text-4xl md:text-5xl font-bold text-center">{greeting}</p>
           <div className="flex items-end gap-1">
-            <p className="text-lg md:text-xl">sou</p>
-            <h1 className="text-4xl md:text-5xl">Morato Custodio.</h1>
+            <p className="text-lg md:text-xl">{intro}</p>
+            <h1 className="text-4xl md:text-5xl">{name}</h1>
           </div>
         </Reveal>
 
         <Reveal direction="up" delay={0.15}>
           <img
             src={new URL("../assets/photo-cover.png", import.meta.url).href}
-            alt="Morato Custódio em fundo laranja"
+            alt={imageAlt}
             className="w-100 sm:w-96 md:w-120 max-w-full"
           />
         </Reveal>

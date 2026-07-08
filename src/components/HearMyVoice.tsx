@@ -2,8 +2,10 @@ import { useState } from "react";
 import Title from "./ui/Title";
 import Reveal from "./ui/Reveal";
 import { useLatestVideo } from "../hooks/useLatestVideo";
+import { data } from "../constants";
 
 function HearMyVoice () {
+    const { subtitle, title, description, errorMessage, playLabel, iframeTitle, thumbnailAlt } = data.hearMyVoice;
     const { videoId, loading, error } = useLatestVideo();
     const [isPlaying, setIsPlaying] = useState(false);
     const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
@@ -12,13 +14,13 @@ function HearMyVoice () {
         <section id="hear-my-voice" className="w-full min-h-screen flex flex-col items-center justify-center px-6 py-24 md:py-28">
             <Reveal>
                 <Title
-                    title="minha-voz"
-                    subtitle="Ouça"
+                    title={title}
+                    subtitle={subtitle}
                 />
             </Reveal>
 
             <Reveal delay={0.1}>
-                <p className="mt-6 text-center">Confira o último episódio de um podcast em que participei.</p>
+                <p className="mt-6 text-center">{description}</p>
             </Reveal>
 
             {loading && (
@@ -28,7 +30,7 @@ function HearMyVoice () {
             )}
 
             {!loading && (error || !videoId) && (
-                <p className="mt-10">Não foi possível carregar o episódio no momento.</p>
+                <p className="mt-10">{errorMessage}</p>
             )}
 
             {!loading && !error && videoId && (
@@ -37,7 +39,7 @@ function HearMyVoice () {
                         <iframe
                             className="w-full h-full"
                             src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                            title="Episódio mais recente"
+                            title={iframeTitle}
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         />
@@ -46,12 +48,12 @@ function HearMyVoice () {
                             type="button"
                             onClick={() => setIsPlaying(true)}
                             className="group w-full h-full relative cursor-pointer"
-                            aria-label="Reproduzir episódio"
+                            aria-label={playLabel}
                         >
                             <img
                                 src={thumbnailSrc ?? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
                                 onError={() => setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`)}
-                                alt="Prévia do episódio"
+                                alt={thumbnailAlt}
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />

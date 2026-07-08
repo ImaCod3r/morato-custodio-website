@@ -6,7 +6,7 @@ import Logo from "./ui/Logo";
 import { data } from "../constants";
 
 function NavBar() {
-  const { links } = data.header;
+  const { links, openMenuLabel, closeMenuLabel } = data.header;
   const [isOpen, setIsOpen] = useState(false);
 
   const closeMenu = () => setIsOpen(false);
@@ -39,7 +39,7 @@ function NavBar() {
           type="button"
           className="md:hidden text-2xl text-gray-950 cursor-pointer"
           onClick={() => setIsOpen((open) => !open)}
-          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+          aria-label={isOpen ? closeMenuLabel : openMenuLabel}
           aria-expanded={isOpen}
         >
           {isOpen ? <FaXmark /> : <FaBars />}

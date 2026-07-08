@@ -1,9 +1,10 @@
 import { TextReveal } from "./ui/TextReveal"
+import { data } from "../constants";
 
 function PhraseReveal() {
     return (
         <section id="phrase-reveal" className="w-full flex flex-col items-center justify-center">
-            <TextReveal>“O maior recurso natural que Angola possue, é o próprio angolano.”</TextReveal>
+            <TextReveal>{data.phraseReveal.phrase}</TextReveal>
         </section>
     )
 }
