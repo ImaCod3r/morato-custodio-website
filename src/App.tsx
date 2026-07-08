@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import PhraseReveal from "./components/PhraseReveal";
 import AboutMe from "./components/AboutMe";
+import HearMyVoice from "./components/HearMyVoice";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         </div>
         <div className="min-h-screen">
           <AboutMe />
+        </div>
+        <div className="min-h-screen">
+          <HearMyVoice />
         </div>
       </main>
     </>
