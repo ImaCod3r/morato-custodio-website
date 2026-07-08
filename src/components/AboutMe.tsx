@@ -1,11 +1,36 @@
 import Title from "./ui/Title";
 
 function AboutMe() {
-    return (
-        <section id="about-me" className="w-full h-full flex justify-center">
-            <Title title="quem-sou" subtitle="Conheça" />
-        </section>
-    )
+  return (
+    <section
+      id="about-me"
+      className="w-full min-h-screen flex flex-col items-center justify-center gap-16"
+    >
+      <Title title="quem-sou" subtitle="Conheça" />
+
+      <div className="flex items-center md:w-215 justify-between">
+        <div className="max-w-[50%]">
+          <p>
+            Sou Morato Custódio, empreendedor angolano apaixonado por um único
+            problema: como levar inclusão financeira e digital aos milhões de
+            angolanos que ainda estão fora do sistema convencional.
+          </p>
+          <br />
+          <p>
+            Acredito que a verdadeira inovação em África nasce da necessidade —
+            e é essa convicção que continua a guiar tudo o que construo. O meu
+            objetivo vai além dos negócios: quero contribuir, em larga escala,
+            para mudar de forma profunda a vida dos angolanos.
+          </p>
+        </div>
+        <img
+          className="w-75"
+          src={new URL("../assets/morato-about.png", import.meta.url).href}
+          alt="Morato Custódio"
+        />
+      </div>
+    </section>
+  );
 }
 
 export default AboutMe;

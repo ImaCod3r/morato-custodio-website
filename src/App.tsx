@@ -7,10 +7,16 @@ function App() {
   return (
     <>
       <NavBar />
-      <main className="flex flex-col gap-16">
-        <Hero />
-        <PhraseReveal />
-        <AboutMe />
+      <main>
+        <div className="min-h-screen">
+          <Hero />
+        </div>
+        <div className="min-h-screen">
+          <PhraseReveal />
+        </div>
+        <div className="min-h-screen">
+          <AboutMe />
+        </div>
       </main>
     </>
   );

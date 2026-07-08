@@ -1,4 +1,4 @@
-import Morato from "../../assets/Morato.svg"
+import Morato from "../../assets/morato.svg"
 
 function Logo() {
     return (
