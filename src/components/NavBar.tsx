@@ -13,7 +13,7 @@ function NavBar() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 h-20 bg-white/95 backdrop-blur border-b border-gray-100">
-      <div className="h-full flex justify-between items-center px-6 md:px-31">
+      <div className="h-full flex justify-between items-center px-8 md:px-31">
         <Logo />
 
         <nav className="hidden md:block">
@@ -48,7 +48,7 @@ function NavBar() {
 
       {isOpen && (
         <nav className="md:hidden bg-white border-b border-gray-100 shadow-lg">
-          <ul className="flex flex-col px-6 py-2">
+          <ul className="flex flex-col px-8 py-2">
             {links &&
               links.map((link, idx) => (
                 <li key={idx}>
