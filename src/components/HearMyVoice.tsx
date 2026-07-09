@@ -5,7 +5,7 @@ import { useLatestVideo } from "../hooks/useLatestVideo";
 import { data } from "../constants";
 
 function HearMyVoice () {
-    const { subtitle, title, description, errorMessage, playLabel, iframeTitle, thumbnailAlt } = data.hearMyVoice;
+    const { subtitle, title, description, playLabel, iframeTitle, thumbnailAlt } = data.hearMyVoice;
     const { videoId, loading, error } = useLatestVideo();
     const [isPlaying, setIsPlaying] = useState(false);
     const [thumbnailSrc, setThumbnailSrc] = useState<string | null>(null);
@@ -23,14 +23,10 @@ function HearMyVoice () {
                 <p className="mt-6 text-center">{description}</p>
             </Reveal>
 
-            {loading && (
+            {(loading || error || !videoId) && (
                 <div className="w-full max-w-2xl aspect-video rounded-2xl bg-gray-200 animate-pulse mt-10 flex items-center justify-center">
                     <div className="w-20 h-20 rounded-full bg-gray-300" />
                 </div>
-            )}
-
-            {!loading && (error || !videoId) && (
-                <p className="mt-10">{errorMessage}</p>
             )}
 
             {!loading && !error && videoId && (

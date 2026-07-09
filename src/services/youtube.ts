@@ -1,6 +1,8 @@
 const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 const SEARCH_QUERY = "Morato Custódio";
 const MIN_DURATION_SECONDS = 45 * 60;
+const QUOTA_EXCEEDED_STATUS = 429;
+const FALLBACK_VIDEO_ID = "Fsi2rDz9GTs";
 
 interface YoutubeSearchItem {
     id: { videoId: string };
@@ -38,6 +40,9 @@ export async function getLatestMoratoCustodioVideo(): Promise<string | null> {
     searchUrl.searchParams.set("key", API_KEY);
 
     const searchResponse = await fetch(searchUrl);
+    if (searchResponse.status === QUOTA_EXCEEDED_STATUS) {
+        return FALLBACK_VIDEO_ID;
+    }
     if (!searchResponse.ok) {
         throw new Error(`YouTube search request failed: ${searchResponse.status}`);
     }
@@ -54,6 +59,9 @@ export async function getLatestMoratoCustodioVideo(): Promise<string | null> {
     videosUrl.searchParams.set("key", API_KEY);
 
     const videosResponse = await fetch(videosUrl);
+    if (videosResponse.status === QUOTA_EXCEEDED_STATUS) {
+        return FALLBACK_VIDEO_ID;
+    }
     if (!videosResponse.ok) {
         throw new Error(`YouTube videos request failed: ${videosResponse.status}`);
     }

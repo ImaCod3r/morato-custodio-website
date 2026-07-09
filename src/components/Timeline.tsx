@@ -21,7 +21,7 @@ function Timeline() {
                         className="relative border-l-2 border-gray-200 pl-8 md:pl-10 pb-10 last:pb-0"
                     >
                         <span
-                            className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#FFA245] ring-4 ring-white"
+                            className="absolute -left-2.25 top-1.5 w-4 h-4 rounded-full bg-[#FFA245] ring-4 ring-white"
                             aria-hidden="true"
                         />
 
