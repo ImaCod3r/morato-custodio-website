@@ -10,7 +10,7 @@ function Hero() {
       className="w-full min-h-screen flex flex-col items-center pt-20 md:justify-center md:gap-6 md:px-6 md:pt-32 md:pb-16"
     >
       <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6 md:flex-none">
-        <Reveal direction="down">
+        <Reveal direction="down" delay={0.5}>
           <p className="text-4xl md:text-5xl font-bold text-center">{greeting}</p>
           <div className="flex items-end gap-1">
             <p className="text-lg md:text-xl">{intro}</p>
