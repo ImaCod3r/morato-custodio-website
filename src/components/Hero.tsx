@@ -7,7 +7,7 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="w-full min-h-screen flex flex-col items-center overflow-x-hidden pt-28 md:justify-center md:gap-6 md:px-6 md:pt-32 md:pb-16"
+      className="w-full min-h-screen flex flex-col items-center pt-20 md:justify-center md:gap-6 md:px-6 md:pt-32 md:pb-16"
     >
       <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6 md:flex-none">
         <Reveal direction="down">
@@ -21,13 +21,13 @@ function Hero() {
 
       <Reveal
         direction="up"
-        delay={0.15}
+        delay={0.2}
         className="w-full flex justify-center"
       >
         <img
           src={new URL("../assets/photo-cover.png", import.meta.url).href}
           alt={imageAlt}
-          className="w-full scale-140 md:scale-100 max-w-none md:w-120 md:max-w-full"
+          className="w-full scale-120 md:scale-100 max-w-none md:w-120 md:max-w-full"
           fetchPriority="high"
           decoding="async"
         />
