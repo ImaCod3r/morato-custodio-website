@@ -21,7 +21,7 @@ function Hero() {
 
       <Reveal
         direction="up"
-        delay={0.2}
+        delay={0.5}
         className="w-full flex justify-center"
       >
         <img
