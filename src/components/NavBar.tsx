@@ -3,11 +3,13 @@ import { Link } from "react-scroll";
 import { FaBars, FaXmark } from "react-icons/fa6";
 
 import Logo from "./ui/Logo";
+import { cn } from "../utils/cn";
 import { data } from "../constants";
 
 function NavBar() {
   const { links, openMenuLabel, closeMenuLabel } = data.header;
   const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   const closeMenu = () => setIsOpen(false);
 
@@ -22,11 +24,19 @@ function NavBar() {
               links.map((link, idx) => (
                 <li key={idx}>
                   <Link
-                    className="text-[16px] text-gray-650 hover:text-gray-950 cursor-pointer"
+                    className={cn(
+                      "text-[16px] cursor-pointer transition-colors",
+                      active === link.to
+                        ? "text-[#FFA245] font-medium"
+                        : "text-gray-650 hover:text-gray-950"
+                    )}
                     to={link.to}
                     smooth
+                    spy
                     duration={500}
                     offset={-80}
+                    onSetActive={() => setActive(link.to)}
+                    aria-current={active === link.to ? "true" : undefined}
                   >
                     {link.title}
                   </Link>
@@ -53,12 +63,20 @@ function NavBar() {
               links.map((link, idx) => (
                 <li key={idx}>
                   <Link
-                    className="block py-3 text-gray-650 hover:text-gray-950 cursor-pointer"
+                    className={cn(
+                      "block py-3 cursor-pointer transition-colors",
+                      active === link.to
+                        ? "text-[#FFA245] font-medium"
+                        : "text-gray-650 hover:text-gray-950"
+                    )}
                     to={link.to}
                     smooth
+                    spy
                     duration={500}
                     offset={-80}
+                    onSetActive={() => setActive(link.to)}
                     onClick={closeMenu}
+                    aria-current={active === link.to ? "true" : undefined}
                   >
                     {link.title}
                   </Link>

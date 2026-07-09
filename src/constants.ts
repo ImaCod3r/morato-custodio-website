@@ -100,6 +100,14 @@ export const data = {
     phraseReveal: {
         phrase: "“O maior recurso natural que Angola tem, é o próprio angolano.”"
     },
+    logoCarousel: {
+        logos: [
+            { src: "jeta-logo.svg", alt: "JETA Africa Holding" },
+            { src: "obama-foundation-logo.svg", alt: "Obama Foundation" },
+            { src: "wiConnect-logo.svg", alt: "WiConnect" },
+            { src: "lpe-logo.svg", alt: "LP Electronics" }
+        ]
+    },
     hearMyVoice: {
         subtitle: "Ouça",
         title: "minha-voz",
@@ -114,8 +122,11 @@ export const data = {
         title: "contacto",
         description: "Preencha o formulário para entrar em contacto comigo por e-mail ou acesse as minhas redes sociais abaixo.",
         form: {
+            nameLabel: "Nome e sobrenome",
             namePlaceholder: "Nome e sobrenome",
+            emailLabel: "Endereço de e-mail",
             emailPlaceholder: "Endereço de e-mail",
+            messageLabel: "Mensagem",
             messagePlaceholder: "Mensagem...",
             submitLabel: "Submeter"
         }

@@ -23,13 +23,19 @@ function AboutMe() {
           ))}
         </Reveal>
         <Reveal direction="left" delay={0.15}>
-          <img
-            className="w-full md:w-75 max-w-full"
-            src={new URL("../assets/morato-about.png", import.meta.url).href}
-            alt={imageAlt}
-            loading="lazy"
-            decoding="async"
-          />
+          <picture className="contents">
+            <source
+              srcSet={new URL("../assets/morato-about.webp", import.meta.url).href}
+              type="image/webp"
+            />
+            <img
+              className="w-full md:w-75 max-w-full"
+              src={new URL("../assets/morato-about.png", import.meta.url).href}
+              alt={imageAlt}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </Reveal>
       </div>
     </section>

@@ -20,9 +20,18 @@ function Contacts() {
 
             <Reveal delay={0.15} className="w-full md:max-w-150 mt-10">
             <form action="/" className="w-full flex flex-col gap-4">
-                <Input type="text" name="name" placeholder={form.namePlaceholder} required />
-                <Input type="email" name="email" placeholder={form.emailPlaceholder} required />
-                <TextArea name="message" placeholder={form.messagePlaceholder} rows={5} required />
+                <div>
+                    <label htmlFor="name" className="sr-only">{form.nameLabel}</label>
+                    <Input id="name" type="text" name="name" placeholder={form.namePlaceholder} autoComplete="name" required />
+                </div>
+                <div>
+                    <label htmlFor="email" className="sr-only">{form.emailLabel}</label>
+                    <Input id="email" type="email" name="email" placeholder={form.emailPlaceholder} autoComplete="email" required />
+                </div>
+                <div>
+                    <label htmlFor="message" className="sr-only">{form.messageLabel}</label>
+                    <TextArea id="message" name="message" placeholder={form.messagePlaceholder} rows={5} required />
+                </div>
                 <Button type="submit">{form.submitLabel}</Button>
             </form>
             </Reveal>

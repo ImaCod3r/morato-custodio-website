@@ -1,4 +1,4 @@
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
@@ -25,13 +25,17 @@ function Reveal({
   amount = 0.3,
   ...props
 }: RevealProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   const variants: Variants = {
-    hidden: { opacity: 0, ...offset[direction] },
+    hidden: { opacity: 0, ...(prefersReducedMotion ? {} : offset[direction]) },
     visible: {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+      transition: prefersReducedMotion
+        ? { duration: 0.2, delay: 0 }
+        : { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
     },
   };
 
