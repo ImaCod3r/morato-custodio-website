@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+html,
 body {
-    background: #ffff;
+    max-width: 100%;
+    /* clip (not hidden) evita scroll horizontal sem quebrar o position: sticky do TextReveal */
+    overflow-x: clip;
+}
+
+body {
+    background: #fff;
 }

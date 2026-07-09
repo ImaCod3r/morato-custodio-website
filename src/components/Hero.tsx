@@ -11,10 +11,10 @@ function Hero() {
     >
       <div className="flex flex-col items-center justify-center gap-6 px-6 md:flex-none">
         <Reveal direction="down" delay={0.5}>
-          <p className="text-4xl md:text-5xl font-bold text-center">{greeting}</p>
-          <div className="flex items-end gap-1">
+          <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-center">{greeting}</p>
+          <div className="flex flex-wrap items-end justify-center gap-1">
             <p className="text-lg md:text-xl">{intro}</p>
-            <h1 className="text-4xl md:text-5xl">{name}</h1>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl">{name}</h1>
           </div>
         </Reveal>
       </div>
