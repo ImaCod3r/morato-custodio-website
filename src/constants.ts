@@ -1,10 +1,12 @@
 export type Locale = "pt" | "en";
+const LOCALE_STORAGE_KEY = "siteLocale";
 
 interface SiteData {
   header: {
     links: Array<{ title: string; to: string }>;
     openMenuLabel: string;
     closeMenuLabel: string;
+    languageLabel: string;
   };
   hero: {
     greeting: string;
@@ -91,6 +93,7 @@ const localizedData: Record<Locale, SiteData> = {
       ],
       openMenuLabel: "Abrir menu",
       closeMenuLabel: "Fechar menu",
+      languageLabel: "Idioma",
     },
     hero: {
       greeting: "Prazer,",
@@ -246,6 +249,7 @@ const localizedData: Record<Locale, SiteData> = {
       ],
       openMenuLabel: "Open menu",
       closeMenuLabel: "Close menu",
+      languageLabel: "Language",
     },
     hero: {
       greeting: "Nice to meet you,",
@@ -393,8 +397,25 @@ export function resolveSystemLocale(): Locale {
   return "pt";
 }
 
+export function getPreferredLocale(): Locale {
+  if (typeof localStorage !== "undefined") {
+    const storedLocale = localStorage.getItem(LOCALE_STORAGE_KEY);
+    if (storedLocale === "pt" || storedLocale === "en") {
+      return storedLocale;
+    }
+  }
+
+  return resolveSystemLocale();
+}
+
+export function setPreferredLocale(locale: Locale): void {
+  if (typeof localStorage !== "undefined") {
+    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+  }
+}
+
 export function getData(locale: Locale = resolveSystemLocale()): SiteData {
   return localizedData[locale];
 }
 
-export const data = getData();
+export const data = getData(getPreferredLocale());

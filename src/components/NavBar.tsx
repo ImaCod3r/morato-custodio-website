@@ -4,14 +4,29 @@ import { FaBars, FaXmark } from "react-icons/fa6";
 
 import Logo from "./ui/Logo";
 import { cn } from "../utils/cn";
-import { data } from "../constants";
+import {
+  data,
+  getPreferredLocale,
+  setPreferredLocale,
+  type Locale,
+} from "../constants";
 
 function NavBar() {
-  const { links, openMenuLabel, closeMenuLabel } = data.header;
+  const { links, openMenuLabel, closeMenuLabel, languageLabel } = data.header;
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("");
+  const [locale, setLocale] = useState<Locale>(() => getPreferredLocale());
 
   const closeMenu = () => setIsOpen(false);
+  const handleLocaleChange = (nextLocale: Locale) => {
+    if (nextLocale === locale) {
+      return;
+    }
+
+    setPreferredLocale(nextLocale);
+    setLocale(nextLocale);
+    window.location.reload();
+  };
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 h-20 bg-white/95 backdrop-blur border-b border-gray-100">
@@ -28,7 +43,7 @@ function NavBar() {
                       "text-[16px] cursor-pointer transition-colors",
                       active === link.to
                         ? "text-[#FFA245] font-medium"
-                        : "text-gray-650 hover:text-gray-950"
+                        : "text-gray-650 hover:text-gray-950",
                     )}
                     to={link.to}
                     smooth
@@ -45,15 +60,33 @@ function NavBar() {
           </ul>
         </nav>
 
-        <button
-          type="button"
-          className="md:hidden text-2xl text-gray-950 cursor-pointer"
-          onClick={() => setIsOpen((open) => !open)}
-          aria-label={isOpen ? closeMenuLabel : openMenuLabel}
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <FaXmark /> : <FaBars />}
-        </button>
+        <div className="flex items-center gap-3">
+          <label htmlFor="locale-select" className="sr-only">
+            {languageLabel}
+          </label>
+          <select
+            id="locale-select"
+            value={locale}
+            onChange={(event) =>
+              handleLocaleChange(event.target.value as Locale)
+            }
+            className="h-9 rounded-md border border-gray-200 bg-white px-2 text-sm text-gray-900"
+            aria-label={languageLabel}
+          >
+            <option value="pt">PT</option>
+            <option value="en">EN</option>
+          </select>
+
+          <button
+            type="button"
+            className="md:hidden text-2xl text-gray-950 cursor-pointer"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-label={isOpen ? closeMenuLabel : openMenuLabel}
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <FaXmark /> : <FaBars />}
+          </button>
+        </div>
       </div>
 
       {isOpen && (
@@ -67,7 +100,7 @@ function NavBar() {
                       "block py-3 cursor-pointer transition-colors",
                       active === link.to
                         ? "text-[#FFA245] font-medium"
-                        : "text-gray-650 hover:text-gray-950"
+                        : "text-gray-650 hover:text-gray-950",
                     )}
                     to={link.to}
                     smooth
