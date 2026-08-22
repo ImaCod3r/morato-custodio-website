@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_TOKEN;
 const SEARCH_QUERY = "Morato Custódio";
 const MIN_DURATION_SECONDS = 45 * 60;
 const QUOTA_EXCEEDED_STATUS = 429;
