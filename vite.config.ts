@@ -2,6 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite"
 
+const PORT = Number(process.env.PORT) || 3005
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
@@ -16,8 +18,16 @@ export default defineConfig({
     // bloqueia .map de qualquer forma.
     sourcemap: false,
   },
+  server: {
+    port: PORT,
+    host: true,
+  },
   preview: {
-    port: 3005,
-    host: true
+    port: PORT,
+    // 0.0.0.0: o contentor do Dokploy precisa de aceitar ligações externas.
+    host: true,
+    // O Traefik do Dokploy encaminha o pedido com o Host do domínio público,
+    // que o vite preview bloquearia por omissão.
+    allowedHosts: true,
   }
 });
