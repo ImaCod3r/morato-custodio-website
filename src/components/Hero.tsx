@@ -24,19 +24,13 @@ function Hero() {
         delay={0.5}
         className="w-full flex justify-center"
       >
-        <picture className="contents">
-          <source
-            srcSet={new URL("../assets/photo-cover.webp", import.meta.url).href}
-            type="image/webp"
-          />
-          <img
-            src={new URL("../assets/photo-cover.png", import.meta.url).href}
-            alt={imageAlt}
-            className="w-full max-w-none md:w-120 md:max-w-full"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src={new URL("../assets/photo-cover.webp", import.meta.url).href}
+          alt={imageAlt}
+          className="w-full max-w-none md:w-120 md:max-w-full"
+          fetchPriority="high"
+          decoding="async"
+        />
       </Reveal>
     </section>
   );

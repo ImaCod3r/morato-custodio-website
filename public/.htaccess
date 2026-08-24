@@ -1,0 +1,128 @@
+# ---------------------------------------------------------------------
+# Morato Custódio — configuração Apache para o build de produção
+# Este ficheiro vive em public/ e é copiado para dist/ em cada build.
+# Envie o conteúdo de dist/ (incluindo este .htaccess) para a raiz do site.
+# ---------------------------------------------------------------------
+
+AddDefaultCharset UTF-8
+DirectoryIndex index.html
+Options -Indexes -MultiViews
+
+# ---------------------------------------------------------------------
+# MIME types (alguns hosts partilhados não conhecem .webp / .avif / .woff2)
+# ---------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType text/javascript                 js mjs
+  AddType text/css                        css
+  AddType image/svg+xml                   svg svgz
+  AddType image/webp                      webp
+  AddType image/avif                      avif
+  AddType font/woff                       woff
+  AddType font/woff2                      woff2
+  AddType application/manifest+json       webmanifest
+  AddType application/xml                 xml
+  AddCharset UTF-8 .html .css .js .mjs .json .xml .svg .txt .webmanifest
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Redirecionamentos canónicos + fallback da SPA
+# ---------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Força HTTPS.
+  # NOTA: comente este bloco enquanto o certificado SSL não estiver activo,
+  # caso contrário o site entra em ciclo de redireccionamento.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # www.morato.ao -> morato.ao (o canonical do index.html é sem www)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # Fallback da SPA: qualquer rota que não seja ficheiro nem pasta existente
+  # devolve o index.html, para que links directos não dêem 404.
+  # /assets/ fica de fora de propósito: um asset em falta deve dar 404 real
+  # em vez de devolver HTML com Content-Type errado.
+  RewriteCond %{REQUEST_URI} !^/assets/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Compressão
+# ---------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/manifest+json
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json application/xml
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/manifest+json
+</IfModule>
+
+# (webp, png, jpg e woff2 já estão comprimidos — não os passar pelo deflate)
+
+# ---------------------------------------------------------------------
+# Cache
+# ---------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 week"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType text/plain                "access plus 1 day"
+  ExpiresByType image/svg+xml             "access plus 1 week"
+  ExpiresByType image/png                 "access plus 1 week"
+  ExpiresByType image/webp                "access plus 1 week"
+  ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Ficheiros gerados pelo Vite trazem hash no nome (index-CA0_lZVt.js):
+  # o conteúdo nunca muda sem mudar o nome, logo podem ser imutáveis.
+  <FilesMatch "\-[A-Za-z0-9_-]{8}\.(js|mjs|css|svg|png|jpe?g|gif|webp|avif|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # O index.html aponta para os assets com hash: tem de ser sempre revalidado,
+  # senão o browser continua a servir o build anterior depois de um deploy.
+  <FilesMatch "\.(html|xml|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Cabeçalhos de segurança
+# ---------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+  Header unset X-Powered-By
+  Header always unset X-Powered-By
+
+  # Content-Security-Policy — cobre o que o site realmente carrega:
+  # embed do YouTube, thumbnails do YouTube e a API do YouTube Data v3.
+  # Está desactivada por defeito: active-a e confirme o site em produção
+  # (consola do browser sem erros de CSP) antes de a deixar ligada.
+  # Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://img.youtube.com https://i.ytimg.com; font-src 'self' data:; connect-src 'self' https://www.googleapis.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests"
+</IfModule>
+
+# ---------------------------------------------------------------------
+# Proteger ficheiros que não devem ser servidos
+# ---------------------------------------------------------------------
+<IfModule mod_authz_core.c>
+  <FilesMatch "(^\.|\.(env|log|map|json|lock|md|ts|tsx)$)">
+    Require all denied
+  </FilesMatch>
+</IfModule>

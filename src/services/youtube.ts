@@ -31,6 +31,12 @@ function parseISO8601Duration(duration: string): number {
 }
 
 export async function getLatestMoratoCustodioVideo(): Promise<string | null> {
+    // Builds feitos sem VITE_YOUTUBE_API_TOKEN (o .env não vai para o git) não
+    // devem chamar a API com key=undefined: cai directo no vídeo de reserva.
+    if (!API_KEY) {
+        return FALLBACK_VIDEO_ID;
+    }
+
     const searchUrl = new URL("https://www.googleapis.com/youtube/v3/search");
     searchUrl.searchParams.set("q", SEARCH_QUERY);
     searchUrl.searchParams.set("type", "video");
