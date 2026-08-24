@@ -3,11 +3,11 @@ import Hero from "./components/Hero";
 import PhraseReveal from "./components/PhraseReveal";
 import AboutMe from "./components/AboutMe";
 import Timeline from "./components/Timeline";
-import LogoCarousel from "./components/LogoCarousel";
 import HearMyVoice from "./components/HearMyVoice";
 import Contacts from "./components/Contacts";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ui/ScrollToTop";
+import DonateButton from "./components/ui/DonateButton";
 
 function App() {
   return (
@@ -18,12 +18,12 @@ function App() {
         <PhraseReveal />
         <AboutMe />
         <Timeline />
-        <LogoCarousel />
         <HearMyVoice />
         <Contacts />
       </main>
       <Footer />
       <ScrollToTop />
+      <DonateButton />
     </>
   );
 }

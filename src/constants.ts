@@ -68,6 +68,11 @@ interface SiteData {
     copyright: string;
     socialLinks: Array<{ label: string; href: string }>;
   };
+  donate: {
+    label: string;
+    ariaLabel: string;
+    href: string;
+  };
 }
 
 const localizedData: Record<Locale, SiteData> = {
@@ -226,6 +231,11 @@ const localizedData: Record<Locale, SiteData> = {
         },
       ],
     },
+    donate: {
+      label: "Doar",
+      ariaLabel: "Doar via PayPal",
+      href: "https://www.paypal.com/paypalme/moratocustodio?country.x=PT&locale.x=en_US",
+    },
   },
   en: {
     header: {
@@ -382,6 +392,11 @@ const localizedData: Record<Locale, SiteData> = {
           href: "https://www.linkedin.com/in/moratocustodio",
         },
       ],
+    },
+    donate: {
+      label: "Donate",
+      ariaLabel: "Donate via PayPal",
+      href: "https://www.paypal.com/paypalme/moratocustodio?country.x=PT&locale.x=en_US",
     },
   },
 };
