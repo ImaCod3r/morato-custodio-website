@@ -16,4 +16,8 @@ export default defineConfig({
     // bloqueia .map de qualquer forma.
     sourcemap: false,
   },
+  preview: {
+    port: 3005,
+    host: true
+  }
 });
